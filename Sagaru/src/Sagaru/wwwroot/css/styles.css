@@ -7,7 +7,23 @@ a:link {
     color: #6fe768;
 }
 
+a:visited {
+    color: #6fe768;
+}
+
+a:hover {
+    color: hotpink !important;
+}
+
+a:active {
+    color: hotpink;
+}
+
 input {
+    color: black !important;
+}
+
+select {
     color: black !important;
 }
 

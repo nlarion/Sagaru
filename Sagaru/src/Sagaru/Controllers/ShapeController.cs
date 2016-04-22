@@ -20,8 +20,8 @@ namespace Sagaru.Controllers
         public IActionResult Details(int id)
         {
             ViewBag.Project = db.Projects.ToList();
-            var people = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
-            return View(people);
+            var thisShape = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
+            return View(thisShape);
         }
         public ActionResult Create()
         {
@@ -51,6 +51,7 @@ namespace Sagaru.Controllers
         public ActionResult Delete(int id)
         {
             var thisShape = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
             return View(thisShape);
         }
         [HttpPost, ActionName("Delete")]

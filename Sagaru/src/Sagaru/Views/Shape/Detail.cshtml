@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Item - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Sagaru.Models.Shape
+<h2>Shape Details</h2>
+<hr />
+
+
+<p>@Html.DisplayNameFor(model => model.Type): @Html.DisplayFor(model => model.Type)</p>
+<p>@Html.DisplayNameFor(model => model.X): @Html.DisplayFor(model => model.X)</p>
+<p>@Html.DisplayNameFor(model => model.Y): @Html.DisplayFor(model => model.Y)</p>
+<p>@Html.DisplayNameFor(model => model.Project): @Html.DisplayFor(model => model.Project)</p>
+
+
+
+<p>@Html.ActionLink("Edit", "Update", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index")</p>
