@@ -9,7 +9,8 @@ namespace Sagaru.Models
     public class SagaruDbContext : DbContext
     {
         public DbSet<Shape> Shapes { get; set; }
-
+        public DbSet<Project> Projects { get; set; }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Sagaru;integrated security = True");

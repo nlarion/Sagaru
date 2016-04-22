@@ -6,15 +6,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sagaru.Models
 {
-    public class Shape
+    public class Project
     {
         [Key]
-        public int Shapeid { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public string Type { get; set; }
         public int ProjectId { get; set; }
-        public virtual Project Project { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public virtual ICollection<Shape> Shapes { get; set; }
     }
-    
 }
