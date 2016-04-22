@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Sagaru";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Sagaru.Models.Project>
+
+<h2>List of Projects:</h2>
+
+<ul>
+    @foreach (var listProject in Model)
+    {
+        <li>@Html.DisplayFor(modelItem => listProject.Name) | @Html.ActionLink("Delete", "Delete", new { id = listProject.ProjectId }) | @Html.ActionLink("Edit", "Update", new { id = listProject.ProjectId })</li>
+        <li>
+            <ul>
+                <li>@Html.DisplayFor(modelItem => listProject.Description)</li>
+            </ul>
+        </li>
+    }
+</ul>
+
+<p>@Html.ActionLink("Add new Project", "Create")</p>
+<p>@Html.ActionLink("Add a Shapes to a Project", "Index", "Shapes")</p>
