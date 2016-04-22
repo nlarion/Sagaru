@@ -17,7 +17,7 @@ namespace Sagaru.Controllers
             ViewBag.Project = db.Projects.ToList();
             return View(db.Shapes.ToList());
         }
-        public IActionResult Details(int id)
+        public IActionResult Detail(int id)
         {
             ViewBag.Project = db.Projects.ToList();
             var thisShape = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
