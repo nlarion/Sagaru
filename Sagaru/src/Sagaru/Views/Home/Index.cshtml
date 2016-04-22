@@ -6,16 +6,15 @@
 @model IEnumerable<Sagaru.Models.Project>
 
 <h2>List of Projects:</h2>
+<hr />
 
 <ul>
     @foreach (var listProject in Model)
     {
-        <li>@Html.DisplayFor(modelItem => listProject.Name) | @Html.ActionLink("Delete", "Delete", new { id = listProject.ProjectId }) | @Html.ActionLink("Edit", "Update", new { id = listProject.ProjectId })</li>
-        <li>
-            <ul>
-                <li>@Html.DisplayFor(modelItem => listProject.Description)</li>
-            </ul>
-        </li>
+        <li>@Html.ActionLink(listProject.Name, "Detail", new { id = listProject.ProjectId })  | @Html.ActionLink("Delete", "Delete", new { id = listProject.ProjectId }) | @Html.ActionLink("Edit", "Update", new { id = listProject.ProjectId })</li>
+        <ul>
+            <li>@Html.DisplayFor(modelItem => listProject.Description)</li>
+        </ul>
     }
 </ul>
 

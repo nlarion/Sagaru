@@ -31,6 +31,12 @@ namespace Sagaru.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Detail(int id)
+        {
+            var thisProject = db.Projects.FirstOrDefault(projects => projects.ProjectId == id);
+            return View(thisProject);
+        }
+
         public IActionResult Delete(int id)
         {
             var thisProject = db.Projects.FirstOrDefault(projects => projects.ProjectId == id);
