@@ -3,6 +3,9 @@
     color: ghostwhite !important;
 }
 
+a:link {
+    color: #6fe768;
+}
 
 input {
     color: black !important;

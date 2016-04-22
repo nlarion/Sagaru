@@ -26,7 +26,7 @@ namespace Sagaru.Migrations
                 name: "Shape",
                 columns: table => new
                 {
-                    Shapeid = table.Column<int>(nullable: false)
+                    ShapeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ProjectId = table.Column<int>(nullable: false),
                     Type = table.Column<string>(nullable: true),
@@ -35,7 +35,7 @@ namespace Sagaru.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shape", x => x.Shapeid);
+                    table.PrimaryKey("PK_Shape", x => x.ShapeId);
                     table.ForeignKey(
                         name: "FK_Shape_Project_ProjectId",
                         column: x => x.ProjectId,

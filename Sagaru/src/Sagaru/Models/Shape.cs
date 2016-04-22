@@ -9,7 +9,7 @@ namespace Sagaru.Models
     public class Shape
     {
         [Key]
-        public int Shapeid { get; set; }
+        public int ShapeId { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public string Type { get; set; }

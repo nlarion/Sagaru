@@ -8,7 +8,7 @@ using Sagaru.Models;
 namespace Sagaru.Migrations
 {
     [DbContext(typeof(SagaruDbContext))]
-    [Migration("20160422165513_Initial")]
+    [Migration("20160422213921_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace Sagaru.Migrations
 
             modelBuilder.Entity("Sagaru.Models.Shape", b =>
                 {
-                    b.Property<int>("Shapeid")
+                    b.Property<int>("ShapeId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("ProjectId");
@@ -42,7 +42,7 @@ namespace Sagaru.Migrations
 
                     b.Property<int>("Y");
 
-                    b.HasKey("Shapeid");
+                    b.HasKey("ShapeId");
                 });
 
             modelBuilder.Entity("Sagaru.Models.Shape", b =>

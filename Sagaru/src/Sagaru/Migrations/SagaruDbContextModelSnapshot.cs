@@ -30,7 +30,7 @@ namespace Sagaru.Migrations
 
             modelBuilder.Entity("Sagaru.Models.Shape", b =>
                 {
-                    b.Property<int>("Shapeid")
+                    b.Property<int>("ShapeId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("ProjectId");
@@ -41,7 +41,7 @@ namespace Sagaru.Migrations
 
                     b.Property<int>("Y");
 
-                    b.HasKey("Shapeid");
+                    b.HasKey("ShapeId");
                 });
 
             modelBuilder.Entity("Sagaru.Models.Shape", b =>
