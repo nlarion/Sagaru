@@ -2,11 +2,19 @@
     background-color: #32265f !important;
 }
 
-h2, h1 {
+h2, h1, h3, h4 {
     color: ghostwhite !important;
+}
+
+input {
+    color: black !important;
 }
 
 .jumbotron {
     background-color: #443d5e !important;
 }
 
+.form {
+    background-color: #443d5e !important;
+    color: ghostwhite !important;
+}

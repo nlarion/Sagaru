@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Sagaru - Create a New Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Sagaru.Models.Project
+
+<h2>Create</h2>
+<hr />
+<h4>Add a new Project</h4>
+<div class="form">
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-sm-3">@Html.LabelFor(model => model.Name) @Html.TextBoxFor(model => model.Name) </div>
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.Description) @Html.TextBoxFor(model => model.Description)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <input class="btn btn-warning" type="submit" value="Add new Project" />
+            </div>
+        </div>
+     }
+</div>
+
+<p>@Html.ActionLink("Back to home", "Index")</p>
