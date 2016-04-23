@@ -34,6 +34,7 @@ namespace Sagaru.Controllers
         public IActionResult Detail(int id)
         {
             var thisProject = db.Projects.FirstOrDefault(projects => projects.ProjectId == id);
+            ViewBag.Shape = db.Shapes.ToList();
             return View(thisProject);
         }
 

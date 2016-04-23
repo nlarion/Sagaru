@@ -10,5 +10,10 @@
 
 <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
 <p>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</p>
-
+<ul>
+    @foreach (var listProject in Model.Shapes)
+    {
+         <li>@Html.DisplayFor(modelItem => listProject.Type)</li>
+    }
+</ul>
 <p>@Html.ActionLink("Edit", "Update", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index")</p>
