@@ -7,7 +7,7 @@
 <h2>Project Details</h2>
 <hr />
 
-
+<canvas id="myCanvas" width="500" height="500"></canvas>
 <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
 <p>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</p>
 <ul>
@@ -17,3 +17,19 @@
     }
 </ul>
 <p>@Html.ActionLink("Edit", "Update", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index")</p>
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    ctx.font = "30px monospace";
+    ctx.fillStyle = "rgba(0,0,0,1)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "rgba(255, 255, 255, 1)";
+    @foreach ( var listProject in Model.Shapes)
+    {
+        <text>
+        ctx.fillText("@listProject.Type",@listProject.X, @listProject.Y);
+        </text>
+    }
+    ctx.stroke();
+</script>
