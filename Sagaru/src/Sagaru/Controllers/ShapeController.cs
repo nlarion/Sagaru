@@ -6,60 +6,69 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 
 namespace Sagaru.Controllers
 {
     public class ShapeController : Controller
     {
-        private SagaruDbContext db = new SagaruDbContext();
-        public IActionResult Index()
+        private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+        public ShapeController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
-            ViewBag.Project = db.Projects.ToList();
-            return View(db.Shapes.ToList());
+            _userManager = userManager;
+            _db = db;
         }
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Index()
         {
-            ViewBag.Project = db.Projects.ToList();
-            var thisShape = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
+            ViewBag.Project = await _db.Projects.ToListAsync();
+            return View(await _db.Shapes.ToListAsync());
+        }
+        public async Task<IActionResult> Detail(int id)
+        {
+            ViewBag.Project = await _db.Projects.ToListAsync();
+            var thisShape = await _db.Shapes.FirstOrDefaultAsync(shape => shape.ShapeId == id);
             return View(thisShape);
         }
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "Name");
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Shape shape)
+        public async Task<IActionResult> Create(Shape shape)
         {
-            db.Shapes.Add(shape);
-            db.SaveChanges();
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            _db.Shapes.Add(shape);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Update(int id)
+        public async Task<IActionResult> Update(int id)
         {
-            var thisShape = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            var thisShape = await _db.Shapes.FirstOrDefaultAsync(shape => shape.ShapeId == id);
+            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "Name");
             return View(thisShape);
         }
         [HttpPost]
-        public ActionResult Update(Shape shape)
+        public IActionResult Update(Shape shape)
         {
-            db.Entry(shape).State = EntityState.Modified;
-            db.SaveChanges();
+            _db.Entry(shape).State = EntityState.Modified;
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var thisShape = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            var thisShape = await _db.Shapes.FirstOrDefaultAsync(shape => shape.ShapeId == id);
+            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "Name");
             return View(thisShape);
         }
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var thisShape = db.Shapes.FirstOrDefault(shape => shape.ShapeId == id);
-            db.Shapes.Remove(thisShape);
-            db.SaveChanges();
+            var thisShape = await _db.Shapes.FirstOrDefaultAsync(shape => shape.ShapeId == id);
+            _db.Shapes.Remove(thisShape);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

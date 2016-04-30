@@ -8,6 +8,7 @@ using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Sagaru.Models;
 
 namespace Sagaru
@@ -25,21 +26,28 @@ namespace Sagaru
         {
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<SagaruDbContext>(options =>
+                .AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
-
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseIISPlatformHandler();
+            app.UseIdentity();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Index}/{id?}");
+            });
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
             });
 
         }

@@ -13,5 +13,6 @@ namespace Sagaru.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<Shape> Shapes { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }
