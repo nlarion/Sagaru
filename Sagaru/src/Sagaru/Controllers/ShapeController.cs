@@ -32,9 +32,10 @@ namespace Sagaru.Controllers
             var thisShape = await _db.Shapes.FirstOrDefaultAsync(shape => shape.ShapeId == id);
             return View(thisShape);
         }
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "Name");
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            ViewBag.ProjectId = new SelectList(_db.Projects.Where(x => x.User.Id == currentUser.Id), "ProjectId", "Name");
             return View();
         }
         [HttpPost]
