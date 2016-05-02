@@ -40,6 +40,7 @@ namespace Sagaru.Controllers
         public async Task<IActionResult> Create(Shape shape)
         {
             var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            shape.User = currentUser;
             _db.Shapes.Add(shape);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -51,8 +52,10 @@ namespace Sagaru.Controllers
             return View(thisShape);
         }
         [HttpPost]
-        public IActionResult Update(Shape shape)
+        public async Task<IActionResult >Update(Shape shape)
         {
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            shape.User = currentUser;
             _db.Entry(shape).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");

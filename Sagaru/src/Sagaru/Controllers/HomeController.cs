@@ -65,6 +65,7 @@ namespace Sagaru.Controllers
         public async Task<IActionResult> Update(Project project)
         {
             var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            project.User = currentUser;
             _db.Entry(project).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");

@@ -19,7 +19,7 @@ else
 
 @if (User.IsSignedIn())
 {
-    <p>@Html.ActionLink("Go to Questions", "index", "Question")</p>
+    <p>@Html.ActionLink("Go to your Projects", "index", "Home")</p>
     @using (Html.BeginForm("LogOff", "Account"))
     {
         <input type="submit" class="btn btn-default" value="Log out" />
