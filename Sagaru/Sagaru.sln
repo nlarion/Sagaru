@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sagaru", "src\Sagaru\Sagaru.xproj", "{9DA334D9-006A-4B9B-9073-3193ADB7FC58}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A26C4D64-1770-4AF9-8EF9-41B80D9D07C3}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sagaru.Tests", "Sagaru.Tests\Sagaru.Tests.xproj", "{DF016CF4-6CB8-40C4-9F48-C41FDD7E056A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +26,16 @@ Global
 		{9DA334D9-006A-4B9B-9073-3193ADB7FC58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DA334D9-006A-4B9B-9073-3193ADB7FC58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DA334D9-006A-4B9B-9073-3193ADB7FC58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF016CF4-6CB8-40C4-9F48-C41FDD7E056A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF016CF4-6CB8-40C4-9F48-C41FDD7E056A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF016CF4-6CB8-40C4-9F48-C41FDD7E056A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF016CF4-6CB8-40C4-9F48-C41FDD7E056A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9DA334D9-006A-4B9B-9073-3193ADB7FC58} = {268B0DBC-03DE-40C1-8116-41008707B839}
+		{DF016CF4-6CB8-40C4-9F48-C41FDD7E056A} = {A26C4D64-1770-4AF9-8EF9-41B80D9D07C3}
 	EndGlobalSection
 EndGlobal
