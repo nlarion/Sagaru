@@ -2,6 +2,7 @@
     ViewData["Title"] = "Sagaru";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using System.Security.Claims
 
 @model IEnumerable<Sagaru.Models.Project>
 
@@ -20,3 +21,11 @@
 
 <p>@Html.ActionLink("Add new Project", "Create")</p>
 <p>@Html.ActionLink("View and Add Shapes", "Index", "Shape")</p>
+
+@if (User.IsSignedIn())
+{
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+        <input type="submit" class="btn btn-default" value="Log out" />
+    }
+}

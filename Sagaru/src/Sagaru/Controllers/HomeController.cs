@@ -21,8 +21,8 @@ namespace Sagaru.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var projects = await _db.Projects.ToListAsync();
-            return View(projects);
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            return View(_db.Projects.Where(x => x.User.Id == currentUser.Id));
         }
         public IActionResult Create()
         {
