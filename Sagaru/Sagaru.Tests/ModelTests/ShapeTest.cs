@@ -10,7 +10,7 @@ namespace Sagaru.Tests.ModelTests
     public class ShapeTest
     {
         [Fact]
-        public void GetDescriptionTest()
+        public void GetXTest()
         {
             //Arrange
             var shape = new Shape();
@@ -21,6 +21,31 @@ namespace Sagaru.Tests.ModelTests
 
             //Assert
             Assert.Equal(100, result);
+        }
+        [Fact]
+        public void GetYTest()
+        {
+            //Arrange
+            var shape = new Shape();
+            shape.Y = 200;
+
+            //Act
+            var result = shape.Y;
+
+            //Assert
+            Assert.Equal(200, result);
+        }
+        public void GetTypeTest()
+        {
+            //Arrange
+            var shape = new Shape();
+            shape.Type = "Square";
+
+            //Act
+            var result = shape.Type;
+
+            //Assert
+            Assert.Equal("Square", result);
         }
     }
 }

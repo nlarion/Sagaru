@@ -23,5 +23,18 @@ namespace Sagaru.Tests
             //Assert
             Assert.Equal("Wash the dog", result);
         }
+        [Fact]
+        public void GetNameTest()
+        {
+            //Arrange
+            var project = new Project();
+            project.Name = "Some Name";
+
+            //Act
+            var result = project.Name;
+
+            //Assert
+            Assert.Equal("Some Name", result);
+        }
     }
 }
