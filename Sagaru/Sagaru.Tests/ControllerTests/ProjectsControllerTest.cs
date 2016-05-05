@@ -17,24 +17,24 @@ using Microsoft.AspNet.Http;
 
 namespace Sagaru.Tests.ControllerTests
 {
-    //public class ProjectsControllerTest
-    //{
-    //    [Fact]
-    //    public void Get_ViewResult_Index_Test()
-    //    {
-    //        //Arrange
-    //        ApplicationDbContext db = new ApplicationDbContext();
-    //        var userManager = new FakeUserManager();
+    public class ProjectsControllerTest
+    {
+        [Fact]
+        public void Get_ViewResult_Index_Test()
+        {
+            //Arrange
+            ApplicationDbContext db = new ApplicationDbContext();
+            var userManager = new FakeUserManager();
 
-    //        HomeController controller = new HomeController(userManager, db);
+            HomeController controller = new HomeController(userManager, db);
 
-    //        //Act
-    //        var result = controller.Index();
+            //Act
+            var result = controller.Index();
 
-    //        //Assert
-    //        Assert.IsType<ViewResult>(result);
-    //    }
-    //}
+            //Assert
+            Assert.IsType<Task<IActionResult>>(result);
+        }
+    }
 
     public class FakeUserManager : UserManager<ApplicationUser>
     {
