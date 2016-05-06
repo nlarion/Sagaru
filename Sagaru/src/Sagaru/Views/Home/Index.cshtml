@@ -1,8 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Sagaru";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@using System.Security.Claims
+﻿@using System.Security.Claims
 
 @model IEnumerable<Sagaru.Models.Project>
 
@@ -12,20 +8,12 @@
 <ul>
     @foreach (var listProject in Model)
     {
-        <li>@Html.ActionLink(listProject.Name, "Detail", new { id = listProject.ProjectId })  | @Html.ActionLink("Delete", "Delete", new { id = listProject.ProjectId }) | @Html.ActionLink("Edit", "Update", new { id = listProject.ProjectId })</li>
+        <li>@Html.ActionLink(listProject.Name, "Detail", "Home", new { id = listProject.ProjectId })  | @Html.ActionLink("Delete", "Delete", "Home", new { id = listProject.ProjectId }) | @Html.ActionLink("Edit", "Update","Home", new { id = listProject.ProjectId })</li>
         <ul>
             <li>@Html.DisplayFor(modelItem => listProject.Description)</li>
         </ul>
     }
 </ul>
 
-<p>@Html.ActionLink("Add new Project", "Create")</p>
+<p>@Html.ActionLink("Add new Project", "Create", "Home")</p>
 <p>@Html.ActionLink("View and Add Shapes", "Index", "Shape")</p>
-
-@if (User.IsSignedIn())
-{
-    @using (Html.BeginForm("LogOff", "Account"))
-    {
-        <input type="submit" class="btn btn-default" value="Log out" />
-    }
-}

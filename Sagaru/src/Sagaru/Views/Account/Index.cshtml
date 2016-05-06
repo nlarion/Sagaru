@@ -5,23 +5,45 @@
 
 @using System.Security.Claims
 
-<h2>Login or Register below:</h2>
-<hr />
+
 @if (User.IsSignedIn())
 {
-    <p>Hello @User.GetUserName()!</p>
+    <div class="row">
+        <div class="col-sm-9">
+            <h2 class="top">Hello @User.GetUserName()!</h2>
+        </div>
+        <div class="col-sm-3 center">
+            @using (Html.BeginForm("LogOff", "Account"))
+            {
+                <input type="submit" class="btn btn-default logout" value="Log out" />
+            }
+        </div>
+    </div>
+    <hr />
 }
 else
 {
+    <h2>Login or Register below:</h2>
+    <hr />
     <p>@Html.ActionLink("Register", "Register")</p>
     <p>@Html.ActionLink("Log in", "Login")</p>
 }
 
 @if (User.IsSignedIn())
 {
-    <p>@Html.ActionLink("Go to your Projects", "index", "Home")</p>
-    @using (Html.BeginForm("LogOff", "Account"))
-    {
-        <input type="submit" class="btn btn-default" value="Log out" />
-    }
+    <div id="projects"></div>
+
+    <script>
+    $(window).load(function () {
+        $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            url: '@Url.Action("Index","Home")',
+            success: function (result) {
+                $('#projects').html(result);
+            }
+        });
+    });
+    </script>
 }
+

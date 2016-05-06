@@ -16,7 +16,7 @@
          <li>@Html.DisplayFor(modelItem => listProject.Type)</li>
     }
 </ul>
-<p>@Html.ActionLink("Edit", "Update", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index")</p>
+<p>@Html.ActionLink("Edit", "Update", "Home", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index", "Account")</p>
 <script>
     var Game = function() {
         this.canvas = document.getElementById('myCanvas');

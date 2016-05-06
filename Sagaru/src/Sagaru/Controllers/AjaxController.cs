@@ -10,11 +10,11 @@ using System.Security.Claims;
 
 namespace Sagaru.Controllers
 {
-    public class HomeController : Controller
+    public class AjaxController : Controller
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
-        public HomeController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
+        public AjaxController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
             _userManager = userManager;
             _db = db;
@@ -35,7 +35,7 @@ namespace Sagaru.Controllers
             project.User = currentUser;
             _db.Projects.Add(project);
             _db.SaveChanges();
-            return RedirectToAction("Index","Account");
+            return RedirectToAction("Index");
         }
         public async Task<IActionResult> Detail(int id)
         {
@@ -54,7 +54,7 @@ namespace Sagaru.Controllers
             var thisProject = await _db.Projects.FirstOrDefaultAsync(projects => projects.ProjectId == id);
             _db.Projects.Remove(thisProject);
             _db.SaveChanges();
-            return RedirectToAction("Index","Account");
+            return RedirectToAction("Index");
         }
         public async Task<IActionResult> Update(int id)
         {
@@ -68,7 +68,7 @@ namespace Sagaru.Controllers
             project.User = currentUser;
             _db.Entry(project).State = EntityState.Modified;
             _db.SaveChanges();
-            return RedirectToAction("Index","Account");
+            return RedirectToAction("Index");
         }
     }
 }

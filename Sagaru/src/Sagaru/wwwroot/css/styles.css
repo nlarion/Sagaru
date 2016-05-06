@@ -39,3 +39,15 @@ select {
     background-color: #443d5e !important;
     color: ghostwhite !important;
 }
+
+.logout {
+    float: right;
+    vertical-align: middle;
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.top {
+    margin-top:0;
+}
