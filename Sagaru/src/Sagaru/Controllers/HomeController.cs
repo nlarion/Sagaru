@@ -24,6 +24,22 @@ namespace Sagaru.Controllers
             var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
             return View(_db.Projects.Where(x => x.User.Id == currentUser.Id));
         }
+        //ajax calls
+        public IActionResult AjaxCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AjaxCreate(Project project)
+        {
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            project.User = currentUser;
+            _db.Projects.Add(project);
+            _db.SaveChanges();
+            return Json(project);
+            //return RedirectToAction("Index", "Account");
+        }
+
         public IActionResult Create()
         {
             return View();

@@ -31,7 +31,10 @@ else
 
 @if (User.IsSignedIn())
 {
+    <div id="listProjects"></div>
     <div id="projects"></div>
+
+
 
     <script>
     $(window).load(function () {
@@ -43,7 +46,16 @@ else
                 $('#projects').html(result);
             }
         });
+        $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            url: '@Url.Action("AjaxCreate","Home")',
+            success: function (result) {
+                $('#listProjects').html(result);
+            }
+        });
     });
+
     </script>
 }
 
