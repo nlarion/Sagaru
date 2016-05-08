@@ -16,10 +16,8 @@
             </div>
         </div>
     }
-
     <div id="result6"></div>
 </div>
-
 <script>
     $('.new-project').submit(function (event) {
         event.preventDefault();
@@ -29,8 +27,8 @@
             dataType: 'json',
             data: $(this).serialize(),
             success: function (result) {
-                var resultMessage = 'You\'ve added a new project to the database!<br>Id: ' + result.ProjectId + '<br>Name: ' + result.Name + '<br>Description: ' + result.Description;
-                $('#result6').html(resultMessage);
+                var resultMessage = '<li><a href="/Home/Detail/' + result.ProjectId + '">' + result.Name + '</a>  | <a href="/Home/Delete/' + result.ProjectId + '">Delete</a> | <a href="/Home/Update/' + result.ProjectId + '">Edit</a></li><ul><li>'+result.Description+'</li></ul>';
+                $('#test').append(resultMessage);
             }
         });
     });

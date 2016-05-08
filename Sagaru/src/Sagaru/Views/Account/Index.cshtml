@@ -5,7 +5,6 @@
 
 @using System.Security.Claims
 
-
 @if (User.IsSignedIn())
 {
     <div class="row">
@@ -31,11 +30,8 @@ else
 
 @if (User.IsSignedIn())
 {
-    <div id="listProjects"></div>
     <div id="projects"></div>
-
-
-
+    <div id="listProjects"></div>
     <script>
     $(window).load(function () {
         $.ajax({
@@ -43,7 +39,7 @@ else
             dataType: 'html',
             url: '@Url.Action("Index","Home")',
             success: function (result) {
-                $('#projects').html(result);
+                $('#listProjects').html(result);
             }
         });
         $.ajax({
@@ -51,11 +47,10 @@ else
             dataType: 'html',
             url: '@Url.Action("AjaxCreate","Home")',
             success: function (result) {
-                $('#listProjects').html(result);
+                $('#projects').html(result);
             }
         });
     });
-
     </script>
 }
 
