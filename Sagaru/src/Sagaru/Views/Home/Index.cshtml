@@ -5,7 +5,7 @@
 <h2>List of Projects:</h2>
 <hr />
 
-<ul id="test">
+<ul id="newProject">
     @foreach (var listProject in Model)
     {
         <li>@Html.ActionLink(listProject.Name, "Detail", "Home", new { id = listProject.ProjectId })  | @Html.ActionLink("Delete", "Delete", "Home", new { id = listProject.ProjectId }) | @Html.ActionLink("Edit", "Update","Home", new { id = listProject.ProjectId })</li>

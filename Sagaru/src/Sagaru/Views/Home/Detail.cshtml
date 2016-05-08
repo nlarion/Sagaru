@@ -35,32 +35,48 @@
         this.x = x;
         this.y = y;
     };
-    Game.prototype.gameManager = function(){
+    Game.prototype.gameManager = function() {
         this.c.font = "30px monospace";
         this.c.fillStyle = "rgba(0,0,0,1)";
         this.c.fillRect(0,0,this.canvas.width,this.canvas.height);
-        this.c.fillStyle = "rgba(255, 255, 255, 1)";
+        //this.c.fillStyle = "rgba(255, 255, 255, 1)";
         for(var i = 0; i < this.gameObjects.length;i++){
-            this.c.fillText(this.gameObjects[i].type,this.gameObjects[i].x, this.gameObjects[i].y);
+            //this.c.fillText(this.gameObjects[i].type, this.gameObjects[i].x, this.gameObjects[i].y);
+            this.drawShape(this.gameObjects[i].type, this.gameObjects[i].x, this.gameObjects[i].y)
         }
     };
-    Game.prototype.drawShape = function(shape){
+    Game.prototype.drawShape = function(shape, x, y) {
         switch(shape) {
             case "Triangle":
-                //TODO: draw a triangle
+                this.c.fillStyle = "#D9D9D9";
+                this.c.beginPath();
+                this.c.moveTo(x, y);
+                this.c.lineTo(x+10, y+10);
+                this.c.lineTo(x-10, y+10);
+                this.c.closePath();
+                this.c.fill();
                 break;
             case "Circle":
-                //TODO: draw a circle
+                this.c.fillStyle = "#D9D9D9";
+                this.c.beginPath();
+                this.c.arc(x, y, 10, 0, Math.PI*2, true);
+                this.c.closePath();
+                this.c.fill();
                 break;
             case "Rectangle":
-                //TODO: draw a Rectangle
+                this.c.fillStyle = "#D9D9D9";
+                this.c.fillRect(x, y, 10, 10);
                 break;
             default:
-                //TODO: draw a circle
+                //Draw Circle
+                this.c.fillStyle = "#D9D9D9";
+                this.c.arc(x, y, 10, 0, Math.PI*2, true);
+                this.c.closePath();
+                this.c.fill();
                 break;
         }
     }
-    Game.prototype.runTheGame = function(){
+    Game.prototype.runTheGame = function() {
         var t = this;
         setInterval(function(){t.gameManager();}, 30);
     };
@@ -68,7 +84,7 @@
         var game = new Game();
         game.runTheGame();
     }
-    (function (){
+    (function () {
         window.addEventListener('load', eventWindowLoaded, false);	
     }());
 </script>
