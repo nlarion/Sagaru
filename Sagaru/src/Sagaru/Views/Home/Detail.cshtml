@@ -28,6 +28,7 @@
         this.mouseX = 0;
         this.mouseY = 0;
         this.isTheMouseBeingPressed = false;
+        this.isTheMouseUnClicked = false;
         @foreach ( var listProject in Model.Shapes)
         {
         <text>
@@ -41,25 +42,22 @@
         this.isTheMouseBeingPressed = true;
     }
     Game.prototype.mouseUnClicked  = function(event) {
-        this.isTheMouseBeingPressed = false;
+        this.isTheMouseUnClicked = true;
     }
     Game.prototype.mouseMove = function(event) {
-        console.log(t);
-        if ( event.layerX ||  event.layerX == 0) { // Firefox
-            console.log(event.layerX);
-            this.mouseX = event.layerX;
-            this.mouseY = event.layerY;
-        } else if (event.offsetX || event.offsetX == 0) { // Opera
+        if (event.offsetX || event.offsetX == 0) { // Opera
             this.mouseX = event.offsetX;
             this.mouseY = event.offsetY;
-        }
-        //this.mouseX = mouseX;
-        //this.mouseY = mouseY;
+        } else if ( event.layerX ||  event.layerX == 0) { // Firefox
+            console.log(event);
+            this.mouseX = event.layerX;
+            this.mouseY = event.layerY;
+        }  
     }
     Game.prototype.gameManager = function() {
         switch(this.appState){
             case STATE_INIT:
-                this.canvas.addEventListener("mousedown", this.mouseClicked, false);
+                this.canvas.addEventListener("mousedown", this.mouseClicked.bind(this), false);
                 this.canvas.addEventListener("mouseup", this.mouseUnClicked.bind(this), false);
                 this.canvas.addEventListener("mousemove", this.mouseMove.bind(this), false);
                 this.appState = STATE_PLAYING;
@@ -70,12 +68,28 @@
                 for(var i = 0; i < this.gameObjects.length;i++){
                     this.drawShape(this.gameObjects[i].type, this.gameObjects[i].x, this.gameObjects[i].y)
                 }
+                this.checkForNewShape();
+                this.drawCursor();
                 this.c.font = "30px monospace";
                 this.c.fillStyle = "green";
                 this.c.fillText("X: " + this.mouseX + " Y: " + this.mouseY, 10, 25)
                 break;        
         }
     };
+    Game.prototype.checkForNewShape = function() {
+        if (this.isTheMouseUnClicked === true) {
+            var shape = new Shape("Circle", this.mouseX, this.mouseY);
+            this.gameObjects.push(shape)
+            this.isTheMouseUnClicked = false;
+        }
+    
+    }
+    Game.prototype.drawCursor = function() {
+        this.c.fillStyle = "#D9D9D9";
+        this.c.arc(this.mouseX, this.mouseY, 10, 0, Math.PI*2, true);
+        this.c.closePath();
+        this.c.fill();
+    }
     Game.prototype.drawShape = function(shape, x, y) {
         switch(shape) {
             case "Triangle":
