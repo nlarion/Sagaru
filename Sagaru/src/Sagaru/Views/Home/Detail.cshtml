@@ -18,10 +18,16 @@
 </ul>
 <p>@Html.ActionLink("Edit", "Update", "Home", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index", "Account")</p>
 <script>
+    const STATE_INIT = 10,
+		STATE_PLAYING = 20;
     var Game = function() {
         this.canvas = document.getElementById('myCanvas');
         this.c = this.canvas.getContext('2d');
         this.gameObjects = [];
+        this.appState = STATE_INIT;
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.isTheMouseBeingPressed = false;
         @foreach ( var listProject in Model.Shapes)
         {
         <text>
@@ -29,20 +35,45 @@
         this.gameObjects.push(shape)
         </text>
         }
+
     };
-    var Shape = function(type, x, y) {
-        this.type = type;
-        this.x = x;
-        this.y = y;
-    };
+    Game.prototype.mouseClicked  = function(event) {
+        this.isTheMouseBeingPressed = true;
+    }
+    Game.prototype.mouseUnClicked  = function(event) {
+        this.isTheMouseBeingPressed = false;
+    }
+    Game.prototype.mouseMove = function(event) {
+        console.log(t);
+        if ( event.layerX ||  event.layerX == 0) { // Firefox
+            console.log(event.layerX);
+            this.mouseX = event.layerX;
+            this.mouseY = event.layerY;
+        } else if (event.offsetX || event.offsetX == 0) { // Opera
+            this.mouseX = event.offsetX;
+            this.mouseY = event.offsetY;
+        }
+        //this.mouseX = mouseX;
+        //this.mouseY = mouseY;
+    }
     Game.prototype.gameManager = function() {
-        this.c.font = "30px monospace";
-        this.c.fillStyle = "rgba(0,0,0,1)";
-        this.c.fillRect(0,0,this.canvas.width,this.canvas.height);
-        //this.c.fillStyle = "rgba(255, 255, 255, 1)";
-        for(var i = 0; i < this.gameObjects.length;i++){
-            //this.c.fillText(this.gameObjects[i].type, this.gameObjects[i].x, this.gameObjects[i].y);
-            this.drawShape(this.gameObjects[i].type, this.gameObjects[i].x, this.gameObjects[i].y)
+        switch(this.appState){
+            case STATE_INIT:
+                this.canvas.addEventListener("mousedown", this.mouseClicked, false);
+                this.canvas.addEventListener("mouseup", this.mouseUnClicked.bind(this), false);
+                this.canvas.addEventListener("mousemove", this.mouseMove.bind(this), false);
+                this.appState = STATE_PLAYING;
+                break;
+            case STATE_PLAYING:
+                this.c.fillStyle = "rgba(0,0,0,1)";
+                this.c.fillRect(0,0,this.canvas.width,this.canvas.height);
+                for(var i = 0; i < this.gameObjects.length;i++){
+                    this.drawShape(this.gameObjects[i].type, this.gameObjects[i].x, this.gameObjects[i].y)
+                }
+                this.c.font = "30px monospace";
+                this.c.fillStyle = "green";
+                this.c.fillText("X: " + this.mouseX + " Y: " + this.mouseY, 10, 25)
+                break;        
         }
     };
     Game.prototype.drawShape = function(shape, x, y) {
@@ -79,6 +110,11 @@
     Game.prototype.runTheGame = function() {
         var t = this;
         setInterval(function(){t.gameManager();}, 30);
+    };
+    var Shape = function(type, x, y) {
+        this.type = type;
+        this.x = x;
+        this.y = y;
     };
     function eventWindowLoaded() {
         var game = new Game();
