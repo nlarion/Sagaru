@@ -17,7 +17,7 @@
     }
 </ul>
 <p>@Html.ActionLink("Edit", "Update", "Home", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index", "Account")</p>
-<p id="test"></p>
+<div id="testy"></div>
 <script>
     const STATE_INIT = 10,
 		STATE_PLAYING = 20;
@@ -144,7 +144,7 @@
             dataType: 'html',
             url: '@Url.Action("GetFlickr","Home")',
             success: function (result) {
-                $('#test').html(result);
+                $('#testy').html(result);
             }
         });
     });
