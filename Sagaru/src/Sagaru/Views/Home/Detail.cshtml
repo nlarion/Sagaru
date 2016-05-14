@@ -17,6 +17,7 @@
     }
 </ul>
 <p>@Html.ActionLink("Edit", "Update", "Home", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index", "Account")</p>
+<p id="test"></p>
 <script>
     const STATE_INIT = 10,
 		STATE_PLAYING = 20;
@@ -52,7 +53,7 @@
             console.log(event);
             this.mouseX = event.layerX;
             this.mouseY = event.layerY;
-        }  
+        }
     }
     Game.prototype.gameManager = function() {
         switch(this.appState){
@@ -73,7 +74,7 @@
                 this.c.font = "30px monospace";
                 this.c.fillStyle = "green";
                 this.c.fillText("X: " + this.mouseX + " Y: " + this.mouseY, 10, 25)
-                break;        
+                break;
         }
     };
     Game.prototype.checkForNewShape = function() {
@@ -82,7 +83,7 @@
             this.gameObjects.push(shape)
             this.isTheMouseUnClicked = false;
         }
-    
+
     }
     Game.prototype.drawCursor = function() {
         this.c.fillStyle = "#D9D9D9";
@@ -135,6 +136,16 @@
         game.runTheGame();
     }
     (function () {
-        window.addEventListener('load', eventWindowLoaded, false);	
+        window.addEventListener('load', eventWindowLoaded, false);
     }());
+    $(window).load(function () {
+        $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            url: '@Url.Action("GetFlickr","Home")',
+            success: function (result) {
+                $('#test').html(result);
+            }
+        });
+    });
 </script>

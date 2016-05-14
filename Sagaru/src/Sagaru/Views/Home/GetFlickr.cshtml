@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Sagaru.Models.Flickr>
+
+<h2>All Photos</h2>
+<hr />
+<ol>
+    @foreach (var photo in Model)
+    {
+        <li>
+            <ul>
+                <li>Id: @Html.DisplayFor(modelItem => photo.Id)</li>
+                <li>Title: @Html.DisplayFor(modelItem => photo.Title)</li>
+                <li>SmallUrl: @Html.DisplayFor(modelItem => photo.Url_s)</li>
+                <li>LargeUrl: @Html.DisplayFor(modelItem => photo.Url_l)</li>
+            </ul>
+        </li>
+    }
+</ol>

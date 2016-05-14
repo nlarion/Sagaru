@@ -86,5 +86,10 @@ namespace Sagaru.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index","Account");
         }
+        public IActionResult GetFlickr()
+        {
+            var allFlickr = Flickr.GetFlickr();
+            return View(allFlickr);
+        }
     }
 }

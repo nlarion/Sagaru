@@ -234,3 +234,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+#Flickr API key for Environment Variables.cs
+EnvironmentVariables.cs
