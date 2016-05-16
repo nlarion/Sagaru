@@ -13,8 +13,7 @@
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
-    "RestSharp": "105.2.3"
+    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final"
   },
 
   "commands": {

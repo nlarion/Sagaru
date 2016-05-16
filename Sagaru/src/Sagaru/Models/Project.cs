@@ -11,7 +11,10 @@ namespace Sagaru.Models
         [Key]
         public int ProjectId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } 
+        public string FlickerImageSmall { get; set; }
+        public string FlickerImageLarge { get; set; }
+        public virtual ICollection<Flickr> Flick { get; set; }
         public virtual ICollection<Shape> Shapes { get; set; }
         public virtual ApplicationUser User { get; set; }
     }

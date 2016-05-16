@@ -57,6 +57,7 @@ namespace Sagaru.Controllers
         {
             var thisProject = await _db.Projects.FirstOrDefaultAsync(projects => projects.ProjectId == id);
             ViewBag.Shape = await _db.Shapes.ToListAsync();
+            ViewBag.Flick = Flickr.GetFlickr();
             return View(thisProject);
         }
         public async Task<IActionResult> Delete(int id)

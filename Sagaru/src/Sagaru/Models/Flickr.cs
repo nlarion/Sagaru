@@ -16,7 +16,7 @@ namespace Sagaru.Models
         public string Title { get; set; }
         public string Url_s{ get; set; }
         public string Url_l { get; set; }
-
+        public virtual Project Project { get; set; }
         public static List<Flickr> GetFlickr()
         {
             var client = new RestClient();

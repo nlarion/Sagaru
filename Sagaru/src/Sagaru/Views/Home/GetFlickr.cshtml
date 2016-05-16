@@ -11,7 +11,7 @@
             <ul>
                 <li>Id: @Html.DisplayFor(modelItem => photo.Id)</li>
                 <li>Title: @Html.DisplayFor(modelItem => photo.Title)</li>
-                <li>SmallUrl: @Html.DisplayFor(modelItem => photo.Url_s)</li>
+                <li><img src="@Html.DisplayFor(modelItem => photo.Url_s)" /></li>
                 <li>LargeUrl: @Html.DisplayFor(modelItem => photo.Url_l)</li>
             </ul>
         </li>

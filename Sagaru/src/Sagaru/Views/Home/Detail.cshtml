@@ -25,19 +25,27 @@
         this.canvas = document.getElementById('myCanvas');
         this.c = this.canvas.getContext('2d');
         this.gameObjects = [];
+        this.flickrObjects = [];
         this.appState = STATE_INIT;
         this.mouseX = 0;
         this.mouseY = 0;
         this.isTheMouseBeingPressed = false;
         this.isTheMouseUnClicked = false;
-        @foreach ( var listProject in Model.Shapes)
+        @*@foreach ( var flickr in Model.Flick)
         {
-        <text>
-        var shape = new Shape("@listProject.Type", @listProject.X, @listProject.Y);
-        this.gameObjects.push(shape)
-        </text>
+            <text>
+            var flickr = new Flickr("@flickr.Id", @flickr.Title, @flickr.Url_s, @flickr.Url_l);
+            this.flickrObjects.push(flickr)
+            </text>
+        }*@
+        @foreach ( var shape in Model.Shapes)
+        {
+            <text>
+            var shape = new Shape("@shape.Type", @shape.X, @shape.Y);
+            this.gameObjects.push(shape)
+            </text>
         }
-
+        console.log(this.flickrObjects);
     };
     Game.prototype.mouseClicked  = function(event) {
         this.isTheMouseBeingPressed = true;
@@ -131,6 +139,12 @@
         this.x = x;
         this.y = y;
     };
+    var Flickr = function(id, title, url_s, url_l) {
+        this.id = id;
+        this.title = title;
+        this.url_s = url_s;
+        this.url_l = url_l;    
+    }
     function eventWindowLoaded() {
         var game = new Game();
         game.runTheGame();
