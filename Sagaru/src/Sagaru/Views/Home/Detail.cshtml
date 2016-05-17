@@ -18,6 +18,9 @@
 </ul>
 <p>@Html.ActionLink("Edit", "Update", "Home", new { id = Model.ProjectId }) | @Html.ActionLink("Back to Home", "Index", "Account")</p>
 <div id="testy"></div>
+
+@ViewBag.Flick
+
 <script>
     const STATE_INIT = 10,
 		STATE_PLAYING = 20;
@@ -31,18 +34,18 @@
         this.mouseY = 0;
         this.isTheMouseBeingPressed = false;
         this.isTheMouseUnClicked = false;
-        @*@foreach ( var flickr in Model.Flick)
+        @foreach ( var flickr in ViewBag.Flick)
         {
             <text>
-            var flickr = new Flickr("@flickr.Id", @flickr.Title, @flickr.Url_s, @flickr.Url_l);
-            this.flickrObjects.push(flickr)
+            var flickr = new Flickr("@flickr.Id", "@flickr.Title", "@flickr.Url_s", "@flickr.Url_l");
+        this.flickrObjects.push(flickr);
             </text>
-        }*@
+        }
         @foreach ( var shape in Model.Shapes)
         {
             <text>
             var shape = new Shape("@shape.Type", @shape.X, @shape.Y);
-            this.gameObjects.push(shape)
+        this.gameObjects.push(shape);
             </text>
         }
         console.log(this.flickrObjects);
